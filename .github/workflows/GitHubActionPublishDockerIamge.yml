@@ -34,7 +34,7 @@ jobs:
     - name: Upload artifact for Docker job
       uses: actions/upload-artifact@v3
       with:
-        name: java-app
+        name: test
         path: '${{ github.workspace }}/target/*.jar'
       
 
@@ -51,7 +51,7 @@ jobs:
       - name: Download artifact from Maven job
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: test
       - name: Logging in to Docker
         run: docker login ghcr.io -u jozsi016 -p ${{ github.token }}
       - name: Build the Docker image
@@ -73,7 +73,7 @@ jobs:
       - name: Verify docker service
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: test
       - name: Verify image
         shell: pwsh
         run: .\verify-image.sh
