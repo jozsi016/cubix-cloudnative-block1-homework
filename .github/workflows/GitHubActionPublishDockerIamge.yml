@@ -74,6 +74,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
+      - name: Logging in to Docker
+        run: docker login ghcr.io -u jozsi016 -p ${{ github.token }}
       - name: Verify image
         shell: pwsh
         run: .\verify-image.sh
